@@ -79,7 +79,7 @@ If you run it, you should be able to see the feature matching image (res.jpg).
 
 This is not enough. We'd better mark the target with a box to facilitate our subsequent planar mapping. Simply put, this step is the most difficult part. We need to find the mapping relationship with the target image based on the template image, and then determine a conversion matrix. This operation is called **Homography**.
 
-```
+```python
 src_pts = np.float32([kp_model[m.queryIdx].pt for m in matches]).reshape(-1, 1, 2)
 dst_pts = np.float32([kp_frame[m.trainIdx].pt for m in matches]).reshape(-1, 1, 2)
 # compute Homography
@@ -111,7 +111,7 @@ As shown in the figure above, under normal circumstances, the external parameter
 
 Then came a very complicated operation. In short, we directly use the code to show the final effect:
 
-```
+```python
 def projection_matrix(camera_parameters, homography):
     """
     From the camera calibration matrix and the estimated homography
